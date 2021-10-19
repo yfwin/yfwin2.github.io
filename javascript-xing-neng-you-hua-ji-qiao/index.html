@@ -1,0 +1,278 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>JavaScript性能优化技巧 | Gridea</title>
+<link rel="shortcut icon" href="https://yfwin.github.io/favicon.ico?v=1634656122983">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://yfwin.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="JavaScript性能优化技巧 | Gridea - Atom Feed" href="https://yfwin.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="##数字转换成字符串
+最好用''+ 数字来将数字转换成字符串，虽然看起来比较丑一点，但事实上这个效率是最高的，性能上来说：
+('' +) &gt; String() &gt; .toString() &gt; new String()
+
+避..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://yfwin.github.io">
+  <img class="avatar" src="https://yfwin.github.io/images/avatar.png?v=1634656122983" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              JavaScript性能优化技巧
+            </h2>
+            <div class="post-info">
+              <span>
+                2021-10-17 23:03
+              </span>
+              <span>
+                4 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>##数字转换成字符串<br>
+最好用<code>''+ 数字</code>来将数字转换成字符串，虽然看起来比较丑一点，但事实上这个效率是最高的，性能上来说：</p>
+<pre><code>('' +) &gt; String() &gt; .toString() &gt; new String()
+</code></pre>
+<h2 id="避免与null进行比较">避免与null进行比较</h2>
+<p>由于JavaScript是弱类型的，所以它不会做任何的自动类型检查，所以如果看到与null进行比较的代码，尝试使用以下技术替换：</p>
+<p>1、如果值应为一个引用类型，使用instanceof操作符检查其构造函数<br>
+2、如果值应为一个基本类型，作用typeof检查其类型<br>
+3、如果是希望对象包含某个特定的方法名，则使用typeof操作符确保指定名字的方法存在于对象上</p>
+<h2 id="字符串连接">字符串连接</h2>
+<p>如果要连接多个字符串，应该少使用+=，如</p>
+<pre><code>s+=a;
+s+=b;
+s+=c;
+</code></pre>
+<p>应该写成</p>
+<pre><code>s+=a + b + c；
+</code></pre>
+<p>而如果是收集字符串，比如多次对同一个字符串进行+=操作的话，最好使用一个缓存，使用JavaScript数组来收集，最后使用join方法连接起来</p>
+<pre><code>var buf = [];
+for (var i = 0; i &lt; 100; i++) {
+	buf.push(i.toString());
+}
+var all = buf.join(&quot;&quot;);
+</code></pre>
+<h2 id="各种类型转换">各种类型转换</h2>
+<pre><code>var myVar = &quot;3.14159&quot;,
+        str = &quot;&quot; + myVar, //  to string  
+        i_int = ~ ~myVar,  //  to integer  
+        f_float = 1 * myVar,  //  to float  
+        b_bool = !!myVar,  /*  to boolean - any string with length and any number except 0 are true */
+        array = [myVar];  //  to array
+</code></pre>
+<p>如果定义了toString()方法来进行类型转换的话，推荐显式调用toString()，因为内部的操作在尝试所有可能性之后，会尝试对象的toString()方法尝试能否转化为String，所以直接调用这个方法效率会更高</p>
+<h2 id="多个类型声明">多个类型声明</h2>
+<p>在JavaScript中所有变量都可以使用单个var语句来声明，这样就是组合在一起的语句，以减少整个脚本的执行时间，就如上面代码一样，上面代码格式也挺规范，让人一看就明了。</p>
+<h2 id="插入迭代器">插入迭代器</h2>
+<p>如var name=values[i]; i++;前面两条语句可以写成var name=values[i++]</p>
+<h2 id="使用直接量">使用直接量</h2>
+<pre><code>var aTest = new Array(); //替换为
+var aTest = [];
+
+var aTest = new Object; //替换为
+var aTest = {};
+
+var reg = new RegExp(); //替换为
+var reg = /../;
+
+//如果要创建具有一些特性的一般对象，也可以使用字面量，如下：
+var oFruit = new O;
+oFruit.color = &quot;red&quot;;
+oFruit.name = &quot;apple&quot;;
+//前面的代码可用对象字面量来改写成这样：
+var oFruit = { color: &quot;red&quot;, name: &quot;apple&quot; };
+</code></pre>
+<h2 id="缩短否定检测">缩短否定检测</h2>
+<pre><code> if (oTest != '#ff0000') {
+	//do something
+}
+if (oTest != null) {
+	//do something
+}
+if (oTest != false) {
+	//do something
+}
+//虽然这些都正确，但用逻辑非操作符来操作也有同样的效果：
+if (!oTest) {
+	//do something
+}
+</code></pre>
+<h2 id="尽量使用原生方法">尽量使用原生方法</h2>
+<h2 id="switch语句相对if较快">switch语句相对if较快</h2>
+<p>通过将case语句按照最可能到最不可能的顺序进行组织</p>
+<h2 id="位运算较快">位运算较快</h2>
+<p>当进行数字运算时，位运算操作要比任何布尔运算或者算数运算快</p>
+<h2 id="巧用和布尔运算符">巧用||和&amp;&amp;布尔运算符</h2>
+<pre><code> function eventHandler(e) {
+     if (!e) e = window.event;
+      }
+      //可以替换为：
+      function eventHandler(e) {
+          e = e || window.event;
+      }
+	  
+    if (myobj) {
+            doSomething(myobj);
+      }
+	//可以替换为：
+	myobj &amp;&amp; doSomething(myobj);
+</code></pre>
+<h2 id="每条语句末尾须加分号">每条语句末尾须加分号</h2>
+<p>在if语句中，即使条件表达式只有一条语句也要用{}把它括起来，以免后续如果添加了语句之后造成逻辑错误</p>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#%E9%81%BF%E5%85%8D%E4%B8%8Enull%E8%BF%9B%E8%A1%8C%E6%AF%94%E8%BE%83">避免与null进行比较</a></li>
+<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9E%E6%8E%A5">字符串连接</a></li>
+<li><a href="#%E5%90%84%E7%A7%8D%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2">各种类型转换</a></li>
+<li><a href="#%E5%A4%9A%E4%B8%AA%E7%B1%BB%E5%9E%8B%E5%A3%B0%E6%98%8E">多个类型声明</a></li>
+<li><a href="#%E6%8F%92%E5%85%A5%E8%BF%AD%E4%BB%A3%E5%99%A8">插入迭代器</a></li>
+<li><a href="#%E4%BD%BF%E7%94%A8%E7%9B%B4%E6%8E%A5%E9%87%8F">使用直接量</a></li>
+<li><a href="#%E7%BC%A9%E7%9F%AD%E5%90%A6%E5%AE%9A%E6%A3%80%E6%B5%8B">缩短否定检测</a></li>
+<li><a href="#%E5%B0%BD%E9%87%8F%E4%BD%BF%E7%94%A8%E5%8E%9F%E7%94%9F%E6%96%B9%E6%B3%95">尽量使用原生方法</a></li>
+<li><a href="#switch%E8%AF%AD%E5%8F%A5%E7%9B%B8%E5%AF%B9if%E8%BE%83%E5%BF%AB">switch语句相对if较快</a></li>
+<li><a href="#%E4%BD%8D%E8%BF%90%E7%AE%97%E8%BE%83%E5%BF%AB">位运算较快</a></li>
+<li><a href="#%E5%B7%A7%E7%94%A8%E5%92%8C%E5%B8%83%E5%B0%94%E8%BF%90%E7%AE%97%E7%AC%A6">巧用||和&amp;&amp;布尔运算符</a></li>
+<li><a href="#%E6%AF%8F%E6%9D%A1%E8%AF%AD%E5%8F%A5%E6%9C%AB%E5%B0%BE%E9%A1%BB%E5%8A%A0%E5%88%86%E5%8F%B7">每条语句末尾须加分号</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://yfwin.github.io/hello-gridea/">
+              <h3 class="post-title">
+                Hello Gridea
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://yfwin.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
