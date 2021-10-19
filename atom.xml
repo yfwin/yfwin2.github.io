@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://yfwin.github.io</id>
     <title>Gridea</title>
-    <updated>2021-10-19T15:56:37.533Z</updated>
+    <updated>2021-10-19T15:57:54.113Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://yfwin.github.io"/>
     <link rel="self" href="https://yfwin.github.io/atom.xml"/>
@@ -16,26 +16,18 @@
         <link href="https://yfwin.github.io/xMi8ZJTVm/">
         </link>
         <updated>2021-10-19T15:48:31.000Z</updated>
-        <summary type="html"><![CDATA[<h1 id="switchhosts">SwitchHosts</h1>
-<ul>
-<li><a href="README.md">English</a></li>
-</ul>
-<p>项目主页：<a href="https://swh.app">https://swh.app</a></p>
-<p>SwitchHosts 是一个管理 hosts 文件的应用，基于 <a href="http://electron.atom.io/">Electron</a><br>
-、<a href="https://facebook.github.io/react/">React</a>、<a href="https://umijs.org/">UmiJS</a><br>
-、<a href="https://chakra-ui.com/">Chakra UI</a>、<a href="http://codemirror.net/">CodeMirror</a> 等技术开发。<br>
-国内访问 GitHub 屡屡被墙，虽然配置 Hosts 可以访问，但是每过一段时间就得手动刷新一下 Hosts，十分的麻烦，那么，你可以选择使用 SwitchHosts，一款自动刷新 Hosts 的管理工具。</p>
+        <summary type="html"><![CDATA[<p>国内访问 GitHub 屡屡被墙，虽然配置 Hosts 可以访问，但是每过一段时间就得手动刷新一下 Hosts，十分的麻烦，那么，你可以选择使用 SwitchHosts，一款自动刷新 Hosts 的管理工具。</p>
 ]]></summary>
-        <content type="html"><![CDATA[<h1 id="switchhosts">SwitchHosts</h1>
+        <content type="html"><![CDATA[<p>国内访问 GitHub 屡屡被墙，虽然配置 Hosts 可以访问，但是每过一段时间就得手动刷新一下 Hosts，十分的麻烦，那么，你可以选择使用 SwitchHosts，一款自动刷新 Hosts 的管理工具。</p>
+<!-- more -->
+<h1 id="switchhosts">SwitchHosts</h1>
 <ul>
 <li><a href="README.md">English</a></li>
 </ul>
 <p>项目主页：<a href="https://swh.app">https://swh.app</a></p>
 <p>SwitchHosts 是一个管理 hosts 文件的应用，基于 <a href="http://electron.atom.io/">Electron</a><br>
 、<a href="https://facebook.github.io/react/">React</a>、<a href="https://umijs.org/">UmiJS</a><br>
-、<a href="https://chakra-ui.com/">Chakra UI</a>、<a href="http://codemirror.net/">CodeMirror</a> 等技术开发。<br>
-国内访问 GitHub 屡屡被墙，虽然配置 Hosts 可以访问，但是每过一段时间就得手动刷新一下 Hosts，十分的麻烦，那么，你可以选择使用 SwitchHosts，一款自动刷新 Hosts 的管理工具。</p>
-<!-- more -->
+、<a href="https://chakra-ui.com/">Chakra UI</a>、<a href="http://codemirror.net/">CodeMirror</a> 等技术开发。</p>
 <h2 id="截图">截图</h2>
 <img src="https://raw.githubusercontent.com/oldj/SwitchHosts/master/screenshots/sh_light.png" alt="Capture" width="960">
 <h2 id="功能特性">功能特性</h2>
