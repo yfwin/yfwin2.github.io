@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://yf.github.io</id>
+    <title>Gridea</title>
+    <updated>2021-10-19T14:33:02.190Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://yf.github.io"/>
+    <link rel="self" href="https://yf.github.io/atom.xml"/>
+    <subtitle>温故而知新</subtitle>
+    <logo>https://yf.github.io/images/avatar.png</logo>
+    <icon>https://yf.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2021, Gridea</rights>
+    <entry>
+        <title type="html"><![CDATA[JavaScript性能优化技巧]]></title>
+        <id>https://yf.github.io/post/javascript-xing-neng-you-hua-ji-qiao/</id>
+        <link href="https://yf.github.io/post/javascript-xing-neng-you-hua-ji-qiao/">
+        </link>
+        <updated>2021-10-17T15:03:17.000Z</updated>
+        <content type="html"><![CDATA[<p>##数字转换成字符串<br>
+最好用<code>''+ 数字</code>来将数字转换成字符串，虽然看起来比较丑一点，但事实上这个效率是最高的，性能上来说：</p>
+<pre><code>('' +) &gt; String() &gt; .toString() &gt; new String()
+</code></pre>
+<h2 id="避免与null进行比较">避免与null进行比较</h2>
+<p>由于JavaScript是弱类型的，所以它不会做任何的自动类型检查，所以如果看到与null进行比较的代码，尝试使用以下技术替换：</p>
+<p>1、如果值应为一个引用类型，使用instanceof操作符检查其构造函数<br>
+2、如果值应为一个基本类型，作用typeof检查其类型<br>
+3、如果是希望对象包含某个特定的方法名，则使用typeof操作符确保指定名字的方法存在于对象上</p>
+<h2 id="字符串连接">字符串连接</h2>
+<p>如果要连接多个字符串，应该少使用+=，如</p>
+<pre><code>s+=a;
+s+=b;
+s+=c;
+</code></pre>
+<p>应该写成</p>
+<pre><code>s+=a + b + c；
+</code></pre>
+<p>而如果是收集字符串，比如多次对同一个字符串进行+=操作的话，最好使用一个缓存，使用JavaScript数组来收集，最后使用join方法连接起来</p>
+<pre><code>var buf = [];
+for (var i = 0; i &lt; 100; i++) {
+	buf.push(i.toString());
+}
+var all = buf.join(&quot;&quot;);
+</code></pre>
+<h2 id="各种类型转换">各种类型转换</h2>
+<pre><code>var myVar = &quot;3.14159&quot;,
+        str = &quot;&quot; + myVar, //  to string  
+        i_int = ~ ~myVar,  //  to integer  
+        f_float = 1 * myVar,  //  to float  
+        b_bool = !!myVar,  /*  to boolean - any string with length and any number except 0 are true */
+        array = [myVar];  //  to array
+</code></pre>
+<p>如果定义了toString()方法来进行类型转换的话，推荐显式调用toString()，因为内部的操作在尝试所有可能性之后，会尝试对象的toString()方法尝试能否转化为String，所以直接调用这个方法效率会更高</p>
+<h2 id="多个类型声明">多个类型声明</h2>
+<p>在JavaScript中所有变量都可以使用单个var语句来声明，这样就是组合在一起的语句，以减少整个脚本的执行时间，就如上面代码一样，上面代码格式也挺规范，让人一看就明了。</p>
+<h2 id="插入迭代器">插入迭代器</h2>
+<p>如var name=values[i]; i++;前面两条语句可以写成var name=values[i++]</p>
+<h2 id="使用直接量">使用直接量</h2>
+<pre><code>var aTest = new Array(); //替换为
+var aTest = [];
+
+var aTest = new Object; //替换为
+var aTest = {};
+
+var reg = new RegExp(); //替换为
+var reg = /../;
+
+//如果要创建具有一些特性的一般对象，也可以使用字面量，如下：
+var oFruit = new O;
+oFruit.color = &quot;red&quot;;
+oFruit.name = &quot;apple&quot;;
+//前面的代码可用对象字面量来改写成这样：
+var oFruit = { color: &quot;red&quot;, name: &quot;apple&quot; };
+</code></pre>
+<h2 id="缩短否定检测">缩短否定检测</h2>
+<pre><code> if (oTest != '#ff0000') {
+	//do something
+}
+if (oTest != null) {
+	//do something
+}
+if (oTest != false) {
+	//do something
+}
+//虽然这些都正确，但用逻辑非操作符来操作也有同样的效果：
+if (!oTest) {
+	//do something
+}
+</code></pre>
+<h2 id="尽量使用原生方法">尽量使用原生方法</h2>
+<h2 id="switch语句相对if较快">switch语句相对if较快</h2>
+<p>通过将case语句按照最可能到最不可能的顺序进行组织</p>
+<h2 id="位运算较快">位运算较快</h2>
+<p>当进行数字运算时，位运算操作要比任何布尔运算或者算数运算快</p>
+<h2 id="巧用和布尔运算符">巧用||和&amp;&amp;布尔运算符</h2>
+<pre><code> function eventHandler(e) {
+     if (!e) e = window.event;
+      }
+      //可以替换为：
+      function eventHandler(e) {
+          e = e || window.event;
+      }
+	  
+    if (myobj) {
+            doSomething(myobj);
+      }
+	//可以替换为：
+	myobj &amp;&amp; doSomething(myobj);
+</code></pre>
+<h2 id="每条语句末尾须加分号">每条语句末尾须加分号</h2>
+<p>在if语句中，即使条件表达式只有一条语句也要用{}把它括起来，以免后续如果添加了语句之后造成逻辑错误</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Hello Gridea]]></title>
+        <id>https://yf.github.io/post/hello-gridea/</id>
+        <link href="https://yf.github.io/post/hello-gridea/">
+        </link>
+        <updated>2018-12-11T16:00:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
+✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
+<!-- more -->
+<p><a href="https://github.com/getgridea/gridea">Github</a><br>
+<a href="https://gridea.dev/">Gridea 主页</a><br>
+<a href="http://fehey.com/">示例网站</a></p>
+<h2 id="特性">特性👇</h2>
+<p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
+<p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
+<p>🏷️  你可以对文章进行标签分组</p>
+<p>📋  你可以自定义菜单，甚至可以创建外部链接菜单</p>
+<p>💻  你可以在 <strong>Windows</strong>，<strong>MacOS</strong> 或 <strong>Linux</strong> 设备上使用此客户端</p>
+<p>🌎  你可以使用 <strong>𝖦𝗂𝗍𝗁𝗎𝖻 𝖯𝖺𝗀𝖾𝗌</strong> 或 <strong>Coding Pages</strong> 向世界展示，未来将支持更多平台</p>
+<p>💬  你可以进行简单的配置，接入 <a href="https://github.com/gitalk/gitalk">Gitalk</a> 或 <a href="https://github.com/SukkaW/DisqusJS">DisqusJS</a> 评论系统</p>
+<p>🇬🇧  你可以使用<strong>中文简体</strong>或<strong>英语</strong></p>
+<p>🌁  你可以任意使用应用内默认主题或任意第三方主题，强大的主题自定义能力</p>
+<p>🖥  你可以自定义源文件夹，利用 OneDrive、百度网盘、iCloud、Dropbox 等进行多设备同步</p>
+<p>🌱 当然 <strong>Gridea</strong> 还很年轻，有很多不足，但请相信，它会不停向前 🏃</p>
+<p>未来，它一定会成为你离不开的伙伴</p>
+<p>尽情发挥你的才华吧！</p>
+<p>😘 Enjoy~</p>
+]]></content>
+    </entry>
+</feed>
