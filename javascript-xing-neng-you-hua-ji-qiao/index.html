@@ -1,98 +1,92 @@
+
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>JavaScript性能优化技巧 | Gridea</title>
-<link rel="shortcut icon" href="https://yfwin.github.io/favicon.ico?v=1634659065126">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+    
+<meta charset="utf-8" >
+
+<title>JavaScript性能优化技巧 | 逸风小站</title>
+<meta name="description" content="温故而知新">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://yfwin.github.io/favicon.ico?v=1634834598124">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://yfwin.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="JavaScript性能优化技巧 | Gridea - Atom Feed" href="https://yfwin.github.io/atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
 
-    <meta name="description" content="##数字转换成字符串
-最好用''+ 数字来将数字转换成字符串，虽然看起来比较丑一点，但事实上这个效率是最高的，性能上来说：1
-('' +) &gt; String() &gt; .toString() &gt; new String()
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
-..." />
-    <meta name="keywords" content="" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://yfwin.github.io">
-  <img class="avatar" src="https://yfwin.github.io/images/avatar.png?v=1634659065126" alt="">
-  </a>
-  <h1 class="site-title">
-    Gridea
-  </h1>
-  <p class="site-description">
-    温故而知新
-  </p>
-  <div class="menu-container">
-    
-      
-        <a href="/" class="menu">
-          首页
-        </a>
-      
-    
-      
-        <a href="/archives" class="menu">
-          归档
-        </a>
-      
-    
-      
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
-  </div>
-  <div class="social-container">
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
+    <div id="app" class="main">
+      <div class="site-header-container">
+  <div class="site-header">
+    <div class="left">
+      <a href="https://yfwin.github.io">
+        <img class="avatar" src="https://yfwin.github.io/images/avatar.png?v=1634834598124" alt="" width="32px" height="32px">
+      </a>
+      <a href="https://yfwin.github.io">
+        <h1 class="site-title">逸风小站</h1>
+      </a>
+    </div>
+    <div class="right">
+      <transition name="fade">
+        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
+      </transition>
+    </div>
   </div>
 </div>
 
+<transition name="fade">
+  <div class="menu-container" style="display: none;" v-show="menuVisible">
+    <div class="menu-list">
+      
+        
+          <a href="/" class="menu purple-link">
+            首页
+          </a>
+        
+      
+        
+          <a href="/archives" class="menu purple-link">
+            归档
+          </a>
+        
+      
+        
+          <a href="/tags" class="menu purple-link">
+            标签
+          </a>
+        
+      
+        
+          <a href="/posts/about" class="menu purple-link">
+            关于
+          </a>
+        
+      
+    </div>
+  </div>
+</transition>
+
+
+      <div class="content-container">
         <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              JavaScript性能优化技巧
-            </h2>
-            <div class="post-info">
-              <span>
-                2021-10-17 23:03
-              </span>
-              <span>
-                4 min read
-              </span>
-              
-            </div>
+          
+          <h2 class="post-title">JavaScript性能优化技巧</h2>
+          <div class="post-info post-detail-info">
+            <span><i class="icon-calendar-outline"></i> 2021-10-17 23:03</span>
             
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <p>##数字转换成字符串<br>
+          </div>
+          <div class="post-content">
+            <p>##数字转换成字符串<br>
 最好用<code>''+ 数字</code>来将数字转换成字符串，虽然看起来比较丑一点，但事实上这个效率是最高的，性能上来说：1</p>
 <pre><code>('' +) &gt; String() &gt; .toString() &gt; new String()
 </code></pre>
@@ -185,94 +179,57 @@ if (!oTest) {
 <h2 id="每条语句末尾须加分号">每条语句末尾须加分号</h2>
 <p>在if语句中，即使条件表达式只有一条语句也要用{}把它括起来，以免后续如果添加了语句之后造成逻辑错误</p>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E9%81%BF%E5%85%8D%E4%B8%8Enull%E8%BF%9B%E8%A1%8C%E6%AF%94%E8%BE%83">避免与null进行比较</a></li>
-<li><a href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9E%E6%8E%A5">字符串连接</a></li>
-<li><a href="#%E5%90%84%E7%A7%8D%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2">各种类型转换</a></li>
-<li><a href="#%E5%A4%9A%E4%B8%AA%E7%B1%BB%E5%9E%8B%E5%A3%B0%E6%98%8E">多个类型声明</a></li>
-<li><a href="#%E6%8F%92%E5%85%A5%E8%BF%AD%E4%BB%A3%E5%99%A8">插入迭代器</a></li>
-<li><a href="#%E4%BD%BF%E7%94%A8%E7%9B%B4%E6%8E%A5%E9%87%8F">使用直接量</a></li>
-<li><a href="#%E7%BC%A9%E7%9F%AD%E5%90%A6%E5%AE%9A%E6%A3%80%E6%B5%8B">缩短否定检测</a></li>
-<li><a href="#%E5%B0%BD%E9%87%8F%E4%BD%BF%E7%94%A8%E5%8E%9F%E7%94%9F%E6%96%B9%E6%B3%95">尽量使用原生方法</a></li>
-<li><a href="#switch%E8%AF%AD%E5%8F%A5%E7%9B%B8%E5%AF%B9if%E8%BE%83%E5%BF%AB">switch语句相对if较快</a></li>
-<li><a href="#%E4%BD%8D%E8%BF%90%E7%AE%97%E8%BE%83%E5%BF%AB">位运算较快</a></li>
-<li><a href="#%E5%B7%A7%E7%94%A8%E5%92%8C%E5%B8%83%E5%B0%94%E8%BF%90%E7%AE%97%E7%AC%A6">巧用||和&amp;&amp;布尔运算符</a></li>
-<li><a href="#%E6%AF%8F%E6%9D%A1%E8%AF%AD%E5%8F%A5%E6%9C%AB%E5%B0%BE%E9%A1%BB%E5%8A%A0%E5%88%86%E5%8F%B7">每条语句末尾须加分号</a></li>
-</ul>
-</li>
-</ul>
-
-              </div>
-            </div>
-          </article>
+          </div>
         </div>
 
         
           <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://yfwin.github.io/hello-gridea/">
+            <a class="purple-link" href="https://yfwin.github.io/hello-gridea/">
               <h3 class="post-title">
-                Hello Gridea
+                下一篇：Hello Gridea
               </h3>
             </a>
           </div>
-        
+          
+      </div>
 
-        
+      
 
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://yfwin.github.io/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
+      <div class="site-footer">
+  <div class="slogan">温故而知新</div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://yfwin.github.io/atom.xml" target="_blank">RSS</a>
 </div>
 
-      </div>
+
     </div>
+    <script type="application/javascript">
 
-    <script>
-      hljs.initHighlightingOnLoad()
+hljs.initHighlightingOnLoad()
 
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
+</script>
 
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
 
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
-            }
-          } else {
-            link.classList.remove("current");
-          }
-        });
-      });
 
-    </script>
+
   </body>
 </html>

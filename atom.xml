@@ -1,15 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://yfwin.github.io</id>
-    <title>Gridea</title>
-    <updated>2021-10-19T16:14:25.229Z</updated>
+    <title>逸风小站</title>
+    <updated>2021-10-21T16:43:51.364Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://yfwin.github.io"/>
     <link rel="self" href="https://yfwin.github.io/atom.xml"/>
     <subtitle>温故而知新</subtitle>
     <logo>https://yfwin.github.io/images/avatar.png</logo>
     <icon>https://yfwin.github.io/favicon.ico</icon>
-    <rights>All rights reserved 2021, Gridea</rights>
+    <rights>All rights reserved 2021, 逸风小站</rights>
+    <entry>
+        <title type="html"><![CDATA[收集一波工具]]></title>
+        <id>https://yfwin.github.io/LFGguQRzl/</id>
+        <link href="https://yfwin.github.io/LFGguQRzl/">
+        </link>
+        <updated>2021-10-21T15:29:36.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="博客平台">博客平台</h2>
+<h3 id="halo">halo</h3>
+<p>https://halo.run/</p>
+<h3 id="gridea">Gridea</h3>
+<p>https://gridea.dev/</p>
+<h3 id="hugo">Hugo</h3>
+<p>https://www.gohugo.org/<br>
+https://zhuanlan.zhihu.com/p/126298572</p>
+<h3 id="volantis5">Volantis5</h3>
+<p>https://volantis.js.org/</p>
+<h2 id="音乐工具">音乐工具</h2>
+<h3 id="音乐直链搜索">音乐直链搜索</h3>
+<p>https://music.liuzhijin.cn/</p>
+<h2 id="其它工具">其它工具</h2>
+<h3 id="hosts工具-switchhosts">Hosts工具 SwitchHosts</h3>
+<p>https://github.com/oldj/SwitchHosts/blob/master/README_cn.md<br>
+https://swh.app/zh/</p>
+<h3 id="查询-github-最新-hosts">查询 GitHub 最新 Hosts</h3>
+<p>https://raw.hellogithub.com/hosts</p>
+<h3 id="github-hosts-配置">GitHub Hosts 配置</h3>
+<p>https://github.com/521xueweihan/GitHub520<br>
+https://www.cnblogs.com/rxbook/p/15241501.html</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Hosts自动刷新工具SwitchHosts]]></title>
         <id>https://yfwin.github.io/xMi8ZJTVm/</id>
