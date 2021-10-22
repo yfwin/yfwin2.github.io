@@ -1,169 +1,215 @@
-
 <!DOCTYPE html>
 <html>
   <head>
-    
-<meta charset="utf-8" >
+    <meta charset="utf-8" >
 
 <title>Hosts | 逸风小站</title>
 <meta name="description" content="温故而知新">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+<link rel="shortcut icon" href="https://yfwin.github.io/favicon.ico?v=1634917465268">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-<link rel="shortcut icon" href="https://yfwin.github.io/favicon.ico?v=1634834598124">
+<link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://yfwin.github.io/styles/main.css">
 
 
-
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
 
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
 
   </head>
   <body>
-    <div id="app" class="main">
-      <div class="site-header-container">
-  <div class="site-header">
-    <div class="left">
-      <a href="https://yfwin.github.io">
-        <img class="avatar" src="https://yfwin.github.io/images/avatar.png?v=1634834598124" alt="" width="32px" height="32px">
-      </a>
-      <a href="https://yfwin.github.io">
-        <h1 class="site-title">逸风小站</h1>
-      </a>
-    </div>
-    <div class="right">
-      <transition name="fade">
-        <i class="icon" :class="{ 'icon-close-outline': menuVisible, 'icon-menu-outline': !menuVisible }" @click="menuVisible = !menuVisible"></i>
-      </transition>
-    </div>
+    <nav class="navbar border fixed split-nav">
+  <div class="nav-brand">
+    <h3><a href="https://yfwin.github.io">逸风小站</a></h3>
   </div>
-</div>
-
-<transition name="fade">
-  <div class="menu-container" style="display: none;" v-show="menuVisible">
-    <div class="menu-list">
-      
+  <div class="collapsible">
+    <input id="collapsible1" type="checkbox" name="collapsible1">
+    <button>
+      <label for="collapsible1">
+        <div class="bar1"></div>
+        <div class="bar2"></div>
+        <div class="bar3"></div>
+      </label>
+    </button>
+    <div class="collapsible-body">
+      <ul class="inline">
         
-          <a href="/" class="menu purple-link">
-            首页
-          </a>
-        
-      
-        
-          <a href="/archives" class="menu purple-link">
-            归档
-          </a>
-        
-      
-        
-          <a href="/tags" class="menu purple-link">
-            标签
-          </a>
-        
-      
-        
-          <a href="/posts/about" class="menu purple-link">
-            关于
-          </a>
-        
-      
-    </div>
-  </div>
-</transition>
-
-
-      <div class="content-container">
-
-        <div class="current-tag-container">
-          <h2 class="title">
-            <i class="icon icon-pricetags-outline"></i> Hosts
-          </h2> 
-        </div>
-
-        
-<section class="post-item">
-    <div class="content">
-      <a href="https://yfwin.github.io/xMi8ZJTVm/">
-        <h2 class="post-title">Hosts自动刷新工具SwitchHosts</h2>
-      </a>
-      <div class="post-abstract">
-        <p>国内访问 GitHub 屡屡被墙，虽然配置 Hosts 可以访问，但是每过一段时间就得手动刷新一下 Hosts，十分的麻烦，那么，你可以选择使用 SwitchHosts，一款自动刷新 Hosts 的管理工具。</p>
-
-      </div>
-      <div class="post-info">
-        <span><i class="icon icon-calendar-outline"></i> 2021-10-19 23:48</span>
-        
-          <span>
-            <i class="icon icon-pricetags-outline"></i>
+          <li>
             
-              <a href="https://yfwin.github.io/FPqJ4zp0v/">
-                工具
-                
-                  ，
-                
+              <a href="/" class="menu">
+                首页
               </a>
             
-              <a href="https://yfwin.github.io/aEpqCK0-F7/">
-                Hosts
-                
+          </li>
+        
+          <li>
+            
+              <a href="/archives" class="menu">
+                归档
               </a>
             
-          </span>
+          </li>
         
-      </div>
+          <li>
+            
+              <a href="/tags" class="menu">
+                标签
+              </a>
+            
+          </li>
+        
+          <li>
+            
+              <a href="/posts/about" class="menu">
+                关于
+              </a>
+            
+          </li>
+        
+      </ul>
     </div>
-    
-      <a href="https://yfwin.github.io/xMi8ZJTVm/">
-        <div class="feature-container" style="background-image: url('https://yfwin.github.io/post-images/xMi8ZJTVm.png')">
-        </div>
+  </div>
+</nav>
+
+    <div id="top" class="row site">
+      <div class="sm-12 md-8 col">
+        <div class="paper">
+          <h2 class="current-tag">标签: Hosts</h2>
+          
+  <article class="article">
+    <h2 class="article-title">
+      <a href="https://yfwin.github.io/xMi8ZJTVm/">Hosts自动刷新工具SwitchHosts</a>
+    </h2>
+    <p class="article-meta">
+      2021-10-19 23:48
+      
+        <a href="https://yfwin.github.io/FPqJ4zp0v/" class="badge secondary">
+          工具
+        </a>
+      
+        <a href="https://yfwin.github.io/aEpqCK0-F7/" class="badge ">
+          Hosts
+        </a>
+      
+    </p>
+    <p class="text-lead">
+      <p>国内访问 GitHub 屡屡被墙，虽然配置 Hosts 可以访问，但是每过一段时间就得手动刷新一下 Hosts，十分的麻烦，那么，你可以选择使用 SwitchHosts，一款自动刷新 Hosts 的管理工具。</p>
+
+    </p>
+    <div class="row">
+      <a href="https://yfwin.github.io/xMi8ZJTVm/" class="readmore-link">
+        <button>
+          Read More
+        </button>
       </a>
-    
-  </section>
+    </div>
+  </article>
 
 
-<div class="pagination-container">
+        </div>
+        <div class="row flex-edges">
   
   
 </div>
 
-
       </div>
-
-      <div class="site-footer">
-  <div class="slogan">温故而知新</div>
-  <div class="social-container">
-    
+      <div class="sm-12 md-4 col sidebar">
+  <div class="paper info-container">
+    <img src="https://yfwin.github.io/images/avatar.png?v=1634917465268" class="no-responsive avatar">
+    <div class="text-muted">温故而知新</div>
+    <div class="social-container">
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
+      
+    </div>
   </div>
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://yfwin.github.io/atom.xml" target="_blank">RSS</a>
+  <div class="paper">
+    <div class="sidebar-title">
+      最新文章
+    </div>
+    <div class="row">
+      <ul>
+        
+          
+            <li>
+              <a href="https://yfwin.github.io/LFGguQRzl/">收集一波工具</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://yfwin.github.io/xMi8ZJTVm/">Hosts自动刷新工具SwitchHosts</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://yfwin.github.io/javascript-xing-neng-you-hua-ji-qiao/">JavaScript性能优化技巧</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://yfwin.github.io/about/">关于</a>
+            </li>
+          
+        
+          
+            <li>
+              <a href="https://yfwin.github.io/hello-gridea/">Hello Gridea</a>
+            </li>
+          
+        
+      </ul>
+    </div>
+  </div>
+  <div class="paper">
+    <div class="sidebar-title">
+      标签列表
+    </div>
+    <div class="row">
+      
+        <a href="https://yfwin.github.io/FPqJ4zp0v/" class="badge ">
+          工具
+        </a>
+      
+        <a href="https://yfwin.github.io/aEpqCK0-F7/" class="badge ">
+          Hosts
+        </a>
+      
+        <a href="https://yfwin.github.io/fRKPDBNxO/" class="badge ">
+          Gridea
+        </a>
+      
+    </div>
+  </div>
+  <div class="paper">
+    Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://yfwin.github.io/atom.xml" target="_blank">RSS</a>
+  </div>
 </div>
 
-
     </div>
-    <script type="application/javascript">
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script type="application/javascript">
+
+AOS.init();
 
 hljs.initHighlightingOnLoad()
-
-var app = new Vue({
-  el: '#app',
-  data: {
-    menuVisible: false,
-  },
-})
 
 </script>
 
